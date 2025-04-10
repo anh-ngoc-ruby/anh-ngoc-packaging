@@ -11,7 +11,7 @@
             <div class="section-title">
                 <h2 class="wow fadeInUp" data-wow-delay=".3s">@content.Title</h2>
             </div>
-            <a asp-controller="Page" asp-action="Product" asp-route-danh-muc="@categorySlug" class="theme-btn transparent-btn wow fadeInUp" data-wow-delay=".5s">
+            <a asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@categorySlug" class="theme-btn transparent-btn wow fadeInUp" data-wow-delay=".5s">
                 @content.ButtonText <i class="fa-solid fa-arrow-right-long"></i>
             </a>
         </div>
