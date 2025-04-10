@@ -1,0 +1,14 @@
+{
+  "system001": "System error",
+  "database001": "Database error",
+
+
+  "auth001": "Invalid identifier or password",
+
+  "file001": "Upload file error",
+
+  "banner001": "Banner does not exists",
+
+  "user001": "Username already exists"
+
+}

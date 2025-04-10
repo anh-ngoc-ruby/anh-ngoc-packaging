@@ -1,0 +1,68 @@
+﻿@model ListProductResponseDto;
+@{
+    var component = Model.Component;
+    var content = component.Content;
+    var categorySlug = component.Extra["product_category_slug"] as string;
+}
+<section class="shop-section section-padding fix pt-100">
+    <div class="container">
+        <div class="section-title-area">
+            <div class="section-title">
+                <h2 class="wow fadeInUp" data-wow-delay=".3s">@content.Title</h2>
+            </div>
+            <a asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@categorySlug" class="theme-btn transparent-btn wow fadeInUp" data-wow-delay=".5s">
+                @content.ButtonText <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+        </div>
+        <div class="swiper book-slider">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="swiper-slide">
+                        <div class="shop-box-items style-2">
+                            <div class="book-thumb center">
+                                <a href="shop-details"><img src="/images/book/01.png" alt="img"></a>
+                                <ul class="post-box">
+                                    <li>
+                                        Hot
+                                    </li>
+                                    <li>
+                                        -30%
+                                    </li>
+                                </ul>
+                                <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                    <li>
+                                        <a href="shop-cart.html"><i class="far fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-cart.html">
+                                            <img class="icon" src="/images/icon/shuffle.svg" alt="svg-icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-details.html"><i class="far fa-eye"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="shop-button">
+                                    <a href="shop-details.html" class="theme-btn">
+                                        <i class="fa-solid fa-basket-shopping"></i> Add To Cart
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="shop-content">
+                                <h5> Design Low Book </h5>
+                                <h3><a href="shop-details.html">Simple Things You To <br> Save BOOK</a></h3>
+                                <ul class="price-list">
+                                    <li>$30.00</li>
+                                    <li>
+                                        <del>$39.99</del>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

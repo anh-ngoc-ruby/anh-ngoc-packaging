@@ -1,0 +1,12 @@
+﻿@model ListComponentResponseDto;
+@{
+    var list = Model.Items?.OrderBy(x => x.Priority).ToList();
+}
+
+@if (@list != null && @list.Count() > 0)
+{
+    @foreach (var item in list)
+    {
+        @await Component.InvokeAsync(item.FileName, item)
+    }
+}

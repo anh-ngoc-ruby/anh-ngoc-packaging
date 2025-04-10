@@ -1,0 +1,80 @@
+﻿@model ProductDetailResponseDto;
+<section class="shop-details-section fix section-padding">
+    <div class="container">
+        <div class="shop-details-wrapper">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="shop-details-image">
+                        <div class="tab-content">
+
+                            <div id="@Model.Image" class="tab-pane fade show active">
+                                <div class="shop-details-thumb">
+                                    <img src="@Model.Image" alt="img">
+                                </div>
+                            </div>
+                            @for (var i = 0; i < Model.Images.Count(); i++)
+                            {
+                                <div id="tab-@i" class="tab-pane fade">
+                                    <div class="shop-details-thumb">
+                                        <img src="@Model.Images[i]" alt="img">
+                                    </div>
+                                </div>
+                            }
+
+
+
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a href="#@Model.Image" data-bs-toggle="tab" class="nav-link active">
+                                    <img src="@Model.Image" alt="img" style="max-width:70px; height:auto">
+                                </a>
+                            </li>
+                            @for (var i = 0; i < Model.Images.Count(); i++)
+                            {
+                                <li class="nav-item">
+                                    <a href="#tab-@i" data-bs-toggle="tab" class="nav-link ">
+                                        <img src="@Model.Images[i]" alt="img" style="max-width:70px; height:auto">
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="shop-details-content">
+                        <div class="title-wrapper">
+                            <h2>@Model.Name</h2>
+                        </div>
+
+                        <p>
+                            @Model.Description
+                        </p>
+                        <div class="price-list">
+                            @if (!string.IsNullOrEmpty(Model.FinalPrice))
+                            {
+                                <h3>@Model.FinalPrice</h3>
+                                <h4>
+                                    <del>@Model.Price</del>
+                                </h4>
+                            }
+                            else
+                            {
+                                <h3>@Model.Price</h3>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-tab section-padding pb-0">
+                @{
+                    var data = new GetListProductRelationRequestDto
+                    {
+                        ProductCateIds = Model.ProductCategoryIds
+                    };
+                }
+                @await Component.InvokeAsync("ListProductRelation", data)
+            </div>
+        </div>
+    </div>
+</section>

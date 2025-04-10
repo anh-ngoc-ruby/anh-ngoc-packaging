@@ -1,0 +1,88 @@
+﻿@model ListProductResponseDto;
+@{
+    var component = Model.Component;
+    var content = component.Content;
+    var categorySlug = component.Extra["product_category_slug"] as string;
+}
+<section class="featured-books-section pt-100 pb-145 fix section-bg">
+    <div class="container">
+        <div class="section-title-area justify-content-center">
+            <div class="section-title wow fadeInUp" data-wow-delay=".3s">
+                <h2>@content.Title</h2>
+            </div>
+        </div>
+
+        <div class="swiper featured-books-slider">
+            <div class="swiper-wrapper">
+                @foreach(var item in Model.Items)
+                {
+                    <div class="swiper-slide">
+                        <div class="shop-box-items style-4 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="book-thumb center">
+                                <a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug"><img src="@item.Image" alt="img"></a>
+                            </div>
+                            <div class="shop-content">
+                                <ul class="book-category">
+                                    @foreach (var cate in item.ProductCategories)
+                                    {
+                                        <li class="book-category-badge">@cate.Name</li>
+
+                                    }
+                                    <li>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        (459)
+                                    </li>
+                                </ul>
+                                <h3><a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug">@item.Name</a></h3>
+                                @* <ul class="author-post"> *@
+                                @*     <li class="authot-list"> *@
+                                @*         <span class="thumb"> *@
+                                @*             <img src="~/images/testimonial/client-1.png" alt="img"> *@
+                                @*         </span> *@
+                                @*         <span class="content">Wilson</span> *@
+                                @*     </li> *@
+                                @* </ul> *@
+                                <div class="book-availablity">
+                                    <div class="details">
+                                        <ul class="price-list">
+
+                                            @if (!string.IsNullOrEmpty(item.FinalPrice))
+                                            {
+                                                <li>@item.FinalPrice</li>
+                                                <li>
+                                                    <del>@item.Price</del>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>@item.Price</li>
+                                            }
+
+
+                                        </ul>
+                                        <div class="progress-line">
+                                        </div>
+                                        <p>25 Books in stock</p>
+                                    </div>
+                                    <div class="shop-btn">
+                                        <a href="shop-cart.html">
+                                            <i class="fa-regular fa-basket-shopping"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>

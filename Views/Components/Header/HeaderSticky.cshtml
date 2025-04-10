@@ -1,0 +1,114 @@
+﻿@model LayoutResponseDto;
+@{
+    var productCategories = Model.ProductCategories.Items;
+    var phone = Model.CompanyInfo.Contacts.Phone;
+    var logo = Model.CompanyInfo.Images.PrimaryLogo;
+    var menus = Model.Menus;
+}
+
+<header class="header-2 sticky-header">
+    <div class="mega-menu-wrapper">
+        <div class="header-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-xl-9">
+                        <div class="header-left">
+                            <div class="logo">
+                                <a asp-action="GetHomePage" asp-controller="Page" class="header-logo">
+                                    <img src="@logo" alt="logo-img">
+                                </a>
+                            </div>
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li>
+                                                <a asp-controller="Page" asp-action="GetHomePage">
+                                                    Trang chủ
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Page" asp-action="GetIntroducePage">
+                                                    Giới thiệu
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Page" asp-action="GetListProductPage">
+                                                    Sản phẩm
+                                                    <i class="fas fa-angle-down"></i>
+                                                </a>
+                                                <ul class="submenu">
+                                                    @foreach (var item in productCategories)
+                                                    {
+                                                        <li>
+                                                            <a style="display: flex;justify-content: space-between; align-items: center;" asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@item.Slug">
+                                                                @item.Name
+                                                   
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <a asp-action="GetContactPage" asp-controller="Page">
+                                                    Liên hệ
+                                                </a>
+                                            </li>
+                                           @* <li>
+                                                <a asp-controller="GetListBlogPage" asp-action="Page">
+                                                    Bài viết
+                                                </a>
+                                            </li>
+                                            *@
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-xl-3">
+                        <div class="header-right">
+                            <div class="category-oneadjust gap-6 d-flex align-items-center">
+                                <div class="icon">
+                                    <i class="fa-sharp fa-solid fa-grid-2"></i>
+                                </div>
+                                <select name="cate" class="category">
+                                    <option value="1">
+                                        Danh mục
+                                    </option>
+                                    @foreach (var item in productCategories)
+                                    {
+                                        <option value="@item.Slug">
+                                            @item.Name
+
+                                        </option>
+                                    }
+                                </select>
+                                <form action="#" class="search-toggle-box d-md-block">
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Tìm kiếm...">
+                                        <button class="cmn-btn">
+                                            <i class="far fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="menu-cart">
+                                <div class="header-humbager ml-30">
+                                    <a class="sidebar__toggle" href="javascript:void(0)">
+                                        <div class="bar-icon-2">
+                                            <img src="~/images/icon/icon-13.svg" alt="img">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</header>

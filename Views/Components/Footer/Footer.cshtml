@@ -1,0 +1,159 @@
+﻿@model LayoutResponseDto
+@{
+    var productCategories = Model.ProductCategories.Items;
+    var contact = Model.CompanyInfo.Contacts;
+    var logo = Model.CompanyInfo.Images.SecondaryLogo;
+    var socialMedia = Model.CompanyInfo.SocialMedia;
+}
+<footer class="footer-section footer-bg">
+    <div class="container">
+        <div class="contact-info-area">
+            <div class="contact-info-items wow fadeInUp" data-wow-delay=".2s">
+                <div class="icon">
+                    <i class="icon-icon-5"></i>
+                </div>
+                <div class="content">
+                    <p>Hotline</p>
+                    <h3>
+                        <a href="tel:@contact.Phone.Replace(" ","")">@contact.Phone</a>
+                    </h3>
+                </div>
+            </div>
+            <div class="contact-info-items wow fadeInUp" data-wow-delay=".4s">
+                <div class="icon">
+                    <i class="icon-icon-6"></i>
+                </div>
+                <div class="content">
+                    <p>Email</p>
+                    <h3>
+                        <a href="mailto:{@contact.Email}">@contact.Email</a>
+                    </h3>
+                </div>
+            </div>
+            <div class="contact-info-items wow fadeInUp" data-wow-delay=".6s">
+                <div class="icon">
+                    <i class="icon-icon-7"></i>
+                </div>
+                <div class="content">
+                    <p>Thời gian làm việc</p>
+                    <h3>
+                        @contact.OpeningHourWorking
+                    </h3>
+                </div>
+            </div>
+            <div class="contact-info-items wow fadeInUp" data-wow-delay=".8s">
+                <div class="icon">
+                    <i class="icon-icon-8"></i>
+                </div>
+                <div class="content">
+                    <p>Địa chỉ</p>
+                    <h3>
+                        @contact.Address
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-widgets-wrapper">
+        <div class="plane-shape float-bob-y">
+            <img src="~/images/plane-shape.png" alt="img">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="single-footer-widget">
+                        <div class="widget-head">
+                            <a asp-controller="Page" asp-action="Home">
+                                <img src="@logo" alt="logo-img">
+                            </a>
+                        </div>
+                        <div class="footer-content">
+                            <div class="social-icon d-flex align-items-center">
+                                <a href="@socialMedia.Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="@socialMedia.TikTok"><i class="fab fa-twitter"></i></a>
+                                <a href="@socialMedia.YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="@socialMedia.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".4s">
+                    <div class="single-footer-widget">
+                        <div class="widget-head">
+                            <h3>Truy cập nhanh</h3>
+                        </div>
+                        <ul class="list-area">
+                            <li>
+                                <a asp-controller="Page" asp-action="GetHomePage">
+                                    <i class="fa-solid fa-chevrons-right"></i>
+                                    Trang chủ
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Page" asp-action="GetIntroducePage">
+                                    <i class="fa-solid fa-chevrons-right"></i>
+                                    Giới thiệu
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Page" asp-action="GetContactPage">
+                                    <i class="fa-solid fa-chevrons-right"></i>
+                                    Liên hệ
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Page" asp-action="GetListBlogPage">
+                                    <i class="fa-solid fa-chevrons-right"></i>
+                                    Bài viết
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".6s">
+                    <div class="single-footer-widget">
+                        <div class="widget-head">
+                            <h3>Danh mục sản phẩm</h3>
+                        </div>
+                        <ul class="list-area">
+                            @foreach (var item in productCategories)
+                            {
+                                <li>
+                                    <a asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@item.Slug">
+                                        <i class="fa-solid fa-chevrons-right"></i>
+                                        @item.Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                    <div class="single-footer-widget">
+                        <div class="widget-head">
+                            <h3>Bản tin</h3>
+                        </div>
+                        <div class="footer-content">
+                            <p>Đăng ký nhận bản tin hàng tuần để cập nhật những thông tin mới nhất.</p>
+                            <div class="footer-input">
+                                <input type="email" id="email2" placeholder="Nhập email của bạn">
+                                <button class="newsletter-btn" type="submit">
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-wrapper d-flex align-items-center justify-content-between">
+                <p class="wow fadeInLeft" data-wow-delay=".3s">
+                    © All Copyright 2025 by <a href="index.html">Kieran</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

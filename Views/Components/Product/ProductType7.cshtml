@@ -1,0 +1,66 @@
+﻿@model ListProductResponseDto;
+
+
+<section class="shop-section section-padding fix pt-0">
+    <div class="container">
+        <div class="section-title-area">
+            <div class="section-title">
+                <h2 class="wow fadeInUp" data-wow-delay=".3s">Sản phẩm tương tự</h2>
+            </div>
+        </div>
+        <div class="swiper book-slider">
+            <div class="swiper-wrapper">
+                @foreach(var item in Model.Items)
+                {
+                    <div class="swiper-slide">
+                        <div class="shop-box-items style-2">
+                            <div class="book-thumb center">
+                                <a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug"><img src="@item.Image" alt="img"></a>
+                                <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                    <li>
+                                        <a ><i class="far fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a >
+                                            <img class="icon" src="~/images/icon/shuffle.svg" alt="svg-icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ><i class="far fa-eye"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="shop-button">
+                                    <a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug" class="theme-btn">
+                                        <i class="fa-solid fa-basket-shopping"></i> Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="shop-content">
+                                @foreach (var cate in item.ProductCategories)
+                                {
+                                    <h5> @cate.Name </h5>
+                                }
+                                <h3><a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug">@item.Name</a></h3>
+                                <ul class="price-list">
+                                    @if (!string.IsNullOrEmpty(item.FinalPrice))
+                                    {
+                                        <li>@item.FinalPrice</li>
+                                        <li>
+                                            <del>@item.Price</del>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>@item.Price</li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>

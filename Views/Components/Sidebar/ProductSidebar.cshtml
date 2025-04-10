@@ -1,0 +1,38 @@
+﻿@model ListProductCategoryResponseDto
+<div class="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
+    <div class="main-sidebar">
+        <div class="single-sidebar-widget">
+            <div class="wid-title">
+                <h5>Tìm kiếm</h5>
+            </div>
+            <form class="search-toggle-box">
+                <div class="input-area search-container">
+                    <input class="search-input" type="text" placeholder="Tìm kiếm...">
+                    <button class="cmn-btn search-icon">
+                        <i class="far fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="single-sidebar-widget">
+            <div class="wid-title">
+                <h5>Danh mục sản phẩm</h5>
+            </div>
+            <div class="categories-list">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    @{
+                        var categorySlug = Context.Request.Query["danh-muc"];
+                    }
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="nav-item">
+                            <button data-category="@item.Slug" class="nav-link product-category-btn @(item.Slug == categorySlug ? "active" : "")">
+                                @item.Name
+                            </button>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model PagingResponseDto
+
+@{
+    var currentPage = Model.Page;
+    var pageSize = Model.PageSize;
+    var TotalCount = Model.TotalCount;
+    var totalPages = TotalCount / pageSize;
+}
+
+@if (totalPages > 1)
+{
+    <div class="page-nav-wrap text-center wow fadeInUp" data-wow-delay=".3s">
+        <ul>
+            @if (currentPage > 1)
+            {
+                <li><a class="previous" data-page="@(currentPage - 1)" data-type="product">❮</a></li>
+            }
+
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li>
+                    <a class="page-numbers @(i == currentPage ? " active" : "")"
+                       data-page="@i"
+                       data-type="product">@i</a>
+                </li>
+            }
+
+            @if (currentPage < totalPages)
+            {
+                <li><a class="next" data-page="@(currentPage + 1)" data-type="product">❯</a></li>
+            }
+        </ul>
+    </div>
+}

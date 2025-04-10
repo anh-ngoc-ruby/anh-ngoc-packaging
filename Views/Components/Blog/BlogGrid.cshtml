@@ -1,0 +1,46 @@
+﻿
+@model ListBlogResponseDto;
+
+<section class="news-section fix section-padding section-bg">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="mb-3 wow fadeInUp" data-wow-delay=".3s">Cập nhật tin tức mới nhất</h2>
+            <p class="wow fadeInUp" data-wow-delay=".5s">
+                Luôn cập nhật những thông tin nóng hổi và xu hướng mới nhất. <br> Đừng bỏ lỡ những tin tức quan trọng mỗi ngày!
+            </p>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="news-card-items">
+                        <div class="news-image">
+
+                            @for (int i = 0; i < 2; i++)
+                            {
+                                <img src="@item.Image" alt="img">
+                            }
+                        </div>
+                        <div class="news-content">
+                            <ul>
+                                <li>
+                                    <i class="fa-light fa-calendar-days"></i>
+                                    @item.CreatedAt.ToString("dd/MM/yyyy")
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-user"></i>
+                                    By Admin
+                                </li>
+                            </ul>
+                            <h3><a href=""> @item.Title</a></h3>
+                            <a href="" class="theme-btn-2">
+                                Đọc thêm <i class="fa-regular fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+﻿@model ListProductCategoryBannerResponseDto;
+<section class="book-banner-section fix section-padding">
+    <div class="container">
+        <div class="row g-4">
+            @{
+                var index = 1;
+            }
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".@((index + 2).ToString())s">
+                    <div class="banner-book-card-items bg-cover"
+                         style="background-image:   url('@Url.Content(item.Background)')">
+                        <div class="book-shape">
+                            <img src="@item.Image" alt="img">
+                        </div>
+                        <div class="banner-book-content">
+                            <h2>@Html.Raw($"{@item.Name}")</h2>
+                            <h6>@Html.Raw($"{@item.Description}")</h6>
+                            <a asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@item.Slug" class="theme-btn white-bg">
+                                Xem thêm <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                index++;
+            }
+
+        </div>
+    </div>
+</section>

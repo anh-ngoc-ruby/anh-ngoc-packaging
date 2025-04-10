@@ -1,0 +1,88 @@
+﻿@model CompanyInfoResponseDto
+@{
+    var Contact = Model.Contacts;
+}
+<section class="contact-section fix section-padding">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-4">
+                    <div class="contact-left-items">
+                        <div class="contact-info-area-2">
+                            <div class="contact-info-items mb-4">
+                                <div class="icon">
+                                    <i class="icon-icon-10"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Hotline</p>
+                                    <h3>
+                                        <a href="tel:@Contact.Phone.Replace(" ","")">@Contact.Phone</a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="contact-info-items mb-4">
+                                <div class="icon">
+                                    <i class="icon-icon-11"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Email</p>
+                                    <h3>
+                                        <a href="mailto:@Contact.Email">@Contact.Email</a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="contact-info-items border-none">
+                                <div class="icon">
+                                    <i class="icon-icon-12"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Địa chỉ</p>
+                                    <h3>
+                                        @Contact.Address
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-image">
+                            <img src="~/uploads/introduce.jpg" alt="img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="contact-content">
+                        <h2>Liên hệ với chúng tôi</h2>
+                        
+                        <form  id="contact-form"  class="contact-form-items">
+                            <div class="row g-4">
+                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
+                                    <div class="form-clt">
+                                        <span>Họ tên*</span>
+                                        <input type="text" name="name" id="name" placeholder="Họ tên">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
+                                    <div class="form-clt">
+                                        <span>Email*</span>
+                                        <input type="text" name="email" id="email123" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".7s">
+                                    <div class="form-clt">
+                                        <span>Nội dung*</span>
+                                        <textarea name="message" id="message"
+                                                  placeholder="Nội dung"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 wow fadeInUp" data-wow-delay=".9s">
+                                    <button type="submit" class="theme-btn">
+                                        Gửi <i class="fa-solid fa-arrow-right-long"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

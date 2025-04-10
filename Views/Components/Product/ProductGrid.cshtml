@@ -1,0 +1,70 @@
+﻿@model ListProductResponseDto
+@{
+    var quantity = Model.Items.Count();
+    var paging = new PagingResponseDto
+            {
+                Page = Model.Page,
+                PageSize = Model.PageSize,
+                Type = "product",
+                TotalCount = Model.TotalCount
+                
+            };
+}
+@if (quantity < 1)
+{
+
+    <h2 class="" style="padding-top: 50px;">Không tìm thấy sản phẩm</h2>
+
+}
+else
+{
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active">
+            <div class="row product-container">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="shop-box-items">
+                            <div class="book-thumb center">
+                                <a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug"><img src="@item.Image" alt="img"></a>
+                            </div>
+                            <div class="shop-content">
+                                <h3><a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug">@item.Name</a></h3>
+                                <ul class="price-list">
+                                    @if (!string.IsNullOrEmpty(item.FinalPrice))
+                                    {
+                                        <li>
+                                            @item.FinalPrice
+                                            <del>
+                                                @item.Price
+                                            </del>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>@item.Price</li>
+                                    }
+                                    <li>
+                                        <i class="fa-solid fa-star"></i>
+                                        3.4 (25)
+                                    </li>
+                                </ul>
+                                <div class="shop-button">
+                                    <a asp-action="GetDetailProductPage" asp-controller="Page" asp-route-slug="@item.Slug" class="theme-btn">
+                                        <i class="fa-solid fa-basket-shopping"></i> Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            @if (quantity > 1)
+            {
+                @await Component.InvokeAsync("Paging", paging)
+            }
+        </div>
+    </div>
+}

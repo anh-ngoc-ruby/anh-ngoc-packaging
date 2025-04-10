@@ -1,0 +1,71 @@
+﻿@model LayoutResponseDto
+@{
+    var productCategories = Model.ProductCategories.Items;
+    var phone = Model.CompanyInfo.Contacts.Phone;
+    var logo = Model.CompanyInfo.Images.PrimaryLogo;
+}
+
+<div class="header-2-section">
+    <div class="container">
+        <div class="header-2-wrapper">
+            <div class="header-top-logo">
+                <a asp-action="GetHomePage" asp-controller="Page">
+                    <img src="@logo" alt="img">
+                </a>
+            </div>
+            <div class="header-2-right">
+                <div class="category-oneadjust gap-6 d-flex align-items-center">
+                    <div class="bd-header__category-nav p-relative">
+                        <div class="bd-category__click style-2">
+                            <span><i class="icon-icon-15"></i> Danh mục </span>
+                        </div>
+                        <div class="category__items-2" style="display: none;">
+                            <div class="category-item">
+                                <nav>
+                                    <ul>
+                                        @foreach (var item in productCategories)
+                                        {
+                                            <li>
+                                                <a asp-controller="Page" asp-action="GetListProductPage" asp-route-danh-muc="@item.Slug">
+                                                    <span> @item.Name</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#" class="search-toggle-box d-md-block">
+                        <div class="input-area">
+                            <input type="text" placeholder="Tìm kiếm...">
+                            <button class="cmn-btn">
+                                <i class="far fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="author-icon">
+                    <div class="icon">
+                        <img src="~/images/icon/icon-23.svg" alt="icon">
+                    </div>
+                    <div class="content">
+                        <span>Liên hệ ngay</span>
+                        <h5>
+                            <a href="tel:@phone.Replace(" ", "")">@phone</a>
+                        </h5>
+                    </div>
+                </div>
+                <div class="menu-cart">
+                    <div class="header-humbager ml-30">
+                        <a class="sidebar__toggle" href="javascript:void(0)">
+                            <div class="bar-icon-2">
+                                <img src="~/images/icon/icon-13.svg" alt="img">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
