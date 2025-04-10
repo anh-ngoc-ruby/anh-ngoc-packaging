@@ -69,10 +69,23 @@
                         </div>
                         <div class="footer-content">
                             <div class="social-icon d-flex align-items-center">
-                                <a href="@socialMedia.Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="@socialMedia.TikTok"><i class="fab fa-twitter"></i></a>
-                                <a href="@socialMedia.YouTube"><i class="fab fa-youtube"></i></a>
-                                <a href="@socialMedia.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                @if (!string.IsNullOrEmpty(socialMedia.Facebook))
+                                {
+                                    <a href="@socialMedia.Facebook"><i class="fab fa-facebook-f"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(socialMedia.TikTok))
+                                {
+                                    <a href="@socialMedia.TikTok"><i class="fab fa-tiktok"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(socialMedia.YouTube))
+                                {
+                                    <a href="@socialMedia.YouTube"><i class="fab fa-youtube"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(socialMedia.LinkedIn))
+                                {
+                                    <a href="@socialMedia.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                }
+
                             </div>
                         </div>
                     </div>

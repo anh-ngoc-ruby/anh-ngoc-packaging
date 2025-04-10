@@ -32,7 +32,7 @@
                                 <i class="fal fa-map-marker-alt"></i>
                             </div>
                             <div class="offcanvas__contact-text">
-                                <a target="_blank" href="index-2.html">@Html.Raw($"{@contact.Address}")</a>
+                                <a>@Html.Raw($"{@contact.Address}")</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -50,7 +50,7 @@
                                 <i class="fal fa-clock"></i>
                             </div>
                             <div class="offcanvas__contact-text">
-                                <a target="_blank" href="index-2.html">@contact.OpeningHourWorking</a>
+                                <a >@contact.OpeningHourWorking</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -68,10 +68,22 @@
                         </a>
                     </div>
                     <div class="social-icon d-flex align-items-center">
-                        <a href="@socialMedia.Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="@socialMedia.TikTok"><i class="fab fa-twitter"></i></a>
-                        <a href="@socialMedia.YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="@socialMedia.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        @if (!string.IsNullOrEmpty(socialMedia.Facebook))
+                        {
+                            <a href="@socialMedia.Facebook"><i class="fab fa-facebook-f"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(socialMedia.TikTok))
+                        {
+                            <a href="@socialMedia.TikTok"><i class="fab fa-tiktok"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(socialMedia.YouTube))
+                        {
+                            <a href="@socialMedia.YouTube"><i class="fab fa-youtube"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(socialMedia.LinkedIn))
+                        {
+                            <a href="@socialMedia.LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        }
                     </div>
                 </div>
             </div>
